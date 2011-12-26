@@ -1,12 +1,12 @@
 var Loecation = {
   initialize: function() {
-    var newOrleans = new google.maps.LatLng(30, -90);
+    var center = new google.maps.LatLng(39, -97);
     var myOptions = {
-      zoom: 8,
-      center: newOrleans,
+      zoom: 5,
+      center: center,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    window.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
   }
 };
