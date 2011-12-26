@@ -2,7 +2,7 @@ Bundler.require(:default, :test)
 require 'minitest/autorun'
 require 'loecation'
 
-class TestLoecation < MiniTest::Unit::TestCase
+class LoecationTest < MiniTest::Unit::TestCase
   include Rack::Test::Methods
 
   def app
