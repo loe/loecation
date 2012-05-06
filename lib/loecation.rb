@@ -21,7 +21,7 @@ class Loecation < Sinatra::Base
     'secret' => ENV['FOURSQUARE_CLIENT_SECRET']
   }
 
-  set :oauth_client, OAuth2::Client.new(OAUTH['id'], OAUTH['secret'], :site => 'https://foursquare.com', :authorize_url => 'https://foursquare.com/oauth2/authenticate', :token_url => 'https://foursquare.com/oauth2/access_token')
+  set :oauth_client, OAuth2::Client.new(OAUTH['id'], OAUTH['secret'], :site => 'https://foursquare.com', :authorize_url => 'https://foursquare.com/oauth2/authorize', :token_url => 'https://foursquare.com/oauth2/access_token')
 
   configure do
     set :asset_host, SETTINGS[settings.environment.to_s]['assets']
