@@ -15,11 +15,15 @@ var Map = Backbone.Model.extend({
   },
 
   queryLocation: function () {
-    navigator.geolocation.getCurrentPosition(_.bind(this.updateLocation, this), this.unableToFind, {maximumAge: 600000, timeout: 10000});
+    $.ajax('https://api.foursquare.com/v2/users/self', {
+      data: {oauth_token: OAUTH_TOKEN},
+      success: _.bind(this.updateLocation, this)
+    });
   },
 
-  updateLocation: function (position) {
-    this.set({loc: new google.maps.LatLng(position.coords.latitude, position.coords.longitude)});
+  updateLocation: function (data, status, xhr) {
+    var location = data.response.user.checkins.items[0].venue.location;
+    this.set({loc: new google.maps.LatLng(location.lat, location.lng)});
   },
 
   unableToFind: function() {
@@ -27,6 +31,10 @@ var Map = Backbone.Model.extend({
   },
 
   dropMarkerOnCurrentLocation: function () {
+    // Pan
+    this.map.panTo(this.get('loc'));
+
+    // Marker
     var marker = new google.maps.Marker({
       position: this.get('loc'),
       map: this.map
