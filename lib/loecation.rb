@@ -16,8 +16,14 @@ class Loecation < Sinatra::Base
 
     sprockets.context_class.instance_eval do
       def settings
-        Cappuccino.settings
+        Loecation.settings
       end
+    end
+  end
+
+  helpers do
+    def asset_path(src)
+      "#{self.class.settings.asset_host}/#{self.class.settings.asset_prefix}/#{self.class.settings.sprockets[src].digest_path}"
     end
   end
 

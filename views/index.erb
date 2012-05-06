@@ -7,10 +7,10 @@
     <meta name="author" content="W. Andrew Loe III">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     
-    <link href="/assets/stylesheets/application.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="<%= asset_path('stylesheets/application.css') %>" media="screen, projection" rel="stylesheet" type="text/css" />
     
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&key=AIzaSyAk0GDO1sJ5r_O0bkQ1RWoVBP4UJ1zUGls"></script>
-    <script type="text/javascript" src="/assets/javascripts/application.js"></script>
+    <script type="text/javascript" src="<%= asset_path('javascripts/application.js') %>"></script>
   </head>
   <body>
     <div id="map_canvas" style="width:100%; height:100%"></div>
