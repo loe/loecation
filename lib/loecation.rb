@@ -5,9 +5,15 @@ class Loecation < Sinatra::Base
   set :sprockets, Sprockets::Environment.new(root)
   set :asset_prefix, 'assets'
 
-  ASSETS = {
-    'development' => 'http://localhost:9393',
-    'production' => 'http://assets.loecation.com'
+  SETTINGS = {
+    'development' => {
+      'assets' => 'http://localhost:9393',
+      'callback_uri' => 'http://localhost:9393/oauth2/callback'
+    },
+    'production' => {
+      'assets' => 'http://assets.loecation.com',
+      'callback_uri' => 'http://www.loecation.com/oauth2/callback'
+    }
   }
 
   OAUTH = {
@@ -16,10 +22,10 @@ class Loecation < Sinatra::Base
   }
 
   set :oauth_client, OAuth2::Client.new(OAUTH['id'], OAUTH['secret'], :site => 'https://foursquare.com', :authorize_url => 'https://foursquare.com/oauth2/authenticate', :token_url => 'https://foursquare.com/oauth2/access_token')
-  set :oauth_callback_url, 'http://localhost:9393/oauth2/callback'
 
   configure do
-    set :asset_host, ASSETS[settings.environment.to_s]
+    set :asset_host, SETTINGS[settings.environment.to_s]['assets']
+    set :callback_uri, SETTINGS[settings.environment.to_s]['callback_uri']
     set :session_secret, '8d50730d3a4f53a1e0e9a22e8494b81ac6c6870ea959a4160f1aee6d38c095248653eb31260f84d8b8b0ba7b29d490e07bb93648a702555cb70e87331e7793f1'
     sprockets.append_path(File.join(root, 'assets'))
 
@@ -41,11 +47,11 @@ class Loecation < Sinatra::Base
   end
 
   get '/auth' do
-    redirect(settings.oauth_client.auth_code.authorize_url(:redirect_uri => settings.oauth_callback_url))
+    redirect(settings.oauth_client.auth_code.authorize_url(:redirect_uri => settings.callback_uri))
   end
 
   get '/oauth2/callback' do
-    token = settings.oauth_client.auth_code.get_token(params[:code], :redirect_uri => settings.oauth_callback_url)
+    token = settings.oauth_client.auth_code.get_token(params[:code], :redirect_uri => settings.callback_uri)
     session['oauth_token'] = token.token
     redirect('/')
   end
