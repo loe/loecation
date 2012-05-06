@@ -10,6 +10,11 @@ class Loecation < Sinatra::Base
     'production' => 'http://assets.loecation.com'
   }
 
+  OAUTH = {
+    'id' => ENV['FOURSQUARE_CLIENT_ID'],
+    'secret' => ENV['FOURSQUARE_CLIENT_SECRET']
+  }
+
   configure do
     set :asset_host, ASSETS[settings.environment.to_s]
     sprockets.append_path(File.join(root, 'assets'))

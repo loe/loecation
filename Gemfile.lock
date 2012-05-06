@@ -2,15 +2,24 @@ GEM
   remote: http://rubygems.org/
   specs:
     addressable (2.2.6)
+    faraday (0.8.0)
+      multipart-post (~> 1.1)
     heroku (2.17.0)
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
       rubyzip
       term-ansicolor (~> 1.0.5)
     hike (1.2.1)
+    httpauth (0.1)
     launchy (2.0.5)
       addressable (~> 2.2.6)
     mime-types (1.17.2)
+    multi_json (1.3.4)
+    multipart-post (1.1.5)
+    oauth2 (0.6.1)
+      faraday (~> 0.7)
+      httpauth (~> 0.1)
+      multi_json (~> 1.3)
     rack (1.3.5)
     rack-protection (1.1.4)
       rack
@@ -38,6 +47,7 @@ PLATFORMS
 
 DEPENDENCIES
   heroku
+  oauth2
   rack-test
   rake
   shotgun

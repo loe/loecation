@@ -1,8 +1,9 @@
 source 'http://rubygems.org/'
 
+gem 'oauth2'
+gem 'rake', :require => false
 gem 'sinatra'
 gem 'sprockets'
-gem 'rake', :require => false
 
 group :development do
   gem 'heroku'
