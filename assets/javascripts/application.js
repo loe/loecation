@@ -7,6 +7,11 @@
 
 // Bootstrap
 $(function () {
+  // Authorize with Foursquare if we don't have a token.
+  if (OAUTH_TOKEN.length === 0) {
+    window.location = '/auth';
+  }
+
   // Map Model
   var map = new Map({element: $('#map_canvas')[0]});
 
