@@ -10,12 +10,12 @@
     <link href="<%= asset_path('stylesheets/application.css') %>" media="screen, projection" rel="stylesheet" type="text/css" />
     
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&key=AIzaSyAk0GDO1sJ5r_O0bkQ1RWoVBP4UJ1zUGls"></script>
+    <script type="text/javascript">
+      OAUTH_TOKEN = '<%= session['oauth_token'] %>';
+    </script>
     <script type="text/javascript" src="<%= asset_path('javascripts/application.js') %>"></script>
   </head>
   <body>
     <div id="map_canvas" style="width:100%; height:100%"></div>
   </body>
-  <!--
-  Token: <%= session['oauth_token'] %>
-  -->
 </html>
