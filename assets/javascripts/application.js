@@ -1,4 +1,5 @@
 //= require javascripts/json2.js
+//= require javascripts/jquery.js
 //= require javascripts/underscore.js
 //= require javascripts/backbone.js
 //= require javascripts/map.js
